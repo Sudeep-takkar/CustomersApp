@@ -1,0 +1,72 @@
+<% layout( 'layout' ) -%>
+
+<h1 id="page-title"><%= title %></h1>
+<div class="container" ng-app="customerApp" ng-controller="customerCtrl">
+
+<select ng-model="searchBy">
+<option ng-repeat="x in search">{{x}}</option>
+</select>
+<input id="searchText"></input>
+<script>
+var app = angular.module('customerApp', []);
+app.controller('customerCtrl', function($scope) {
+    $scope.search = ["Name","Mobile","Phone","DOB"];
+});
+</script>
+
+<div class="col-sm-5">
+  <form action="/create" method="post" accept-charset="utf-8" role="form" class="form-horizontal">
+  <div class="form-group">
+  <label>Name:</label>
+      <input class="form-control"  type="text" name="Name" placeholder="Enter Customer name" required/>
+      </div>
+      <div class="form-group">
+      <label>Mobile:</label>
+      <input class="form-control"  type="text" name="Mobile" placeholder="Enter your mobile no" required/>
+      </div>
+      <div class="form-group">
+      <label>Landline Number:</label>
+      <input class="form-control"  type="text" name="Phone" placeholder="Enter any alternative number"/>
+</div>
+      <div class="form-group">
+      <label>Flat Number:</label>
+      <input class="form-control"  type="number" name="FlatNo" placeholder="Enter Flat number"/>
+</div>
+      <div class="form-group">
+      <label>Street Number:</label>
+      <input class="form-control"  type="number" name="Street" placeholder="Enter Street Number"/>
+</div>
+      <div class="form-group">
+      <label>State:</label>
+      <input class="form-control"  type="text" name="State" placeholder="Enter State"/>
+</div>
+      <div class="form-group">
+      <label>Pin code:</label>
+      <input class="form-control"  type="number" name="PinCode" placeholder="Enter Pin code"/>
+</div>
+      <div class="form-group">
+      <label>Date of Birth:</label>
+      <input class="form-control"  type="date" name="DOB" placeholder="Enter Date of Birth"/>
+</div>
+      <div class="form-group">
+      <label>Email:</label>
+      <input class="form-control"  type="email" name="Email" placeholder="Enter Email"/>
+</div>
+            <div class="form-group">
+      <button type="submit" name="action">Submit</button>
+      </div>
+  </form>
+  </div>
+
+<div class="col-sm-5">
+<% customer.forEach( function (customer){ %>
+
+  <div class="item">
+    <a class="update-link" href="/edit/<%= customer._id %>" title="Update this customer"><%= customer.Name %></a>
+    <a class="del-btn" href="/destroy/<%= customer._id %>" title="Delete this customer">Delete</a>
+  </div>
+
+<% }); %>
+</div>
+
+  </div>
