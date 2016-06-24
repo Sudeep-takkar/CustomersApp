@@ -3,17 +3,6 @@
 <h1 id="page-title"><%= title %></h1>
 <div class="container" ng-app="customerApp" ng-controller="customerCtrl">
 
-<select ng-model="searchBy">
-<option ng-repeat="x in search">{{x}}</option>
-</select>
-<input id="searchText"></input>
-<script>
-var app = angular.module('customerApp', []);
-app.controller('customerCtrl', function($scope) {
-    $scope.search = ["Name","Mobile","Phone","DOB"];
-});
-</script>
-
 <div class="col-sm-5">
   <form action="/create" method="post" accept-charset="utf-8" role="form" class="form-horizontal">
   <div class="form-group">
